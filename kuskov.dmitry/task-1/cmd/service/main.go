@@ -22,7 +22,7 @@ func main() {
 		fmt.Println("Invalid operation")
 		return
 	}
-	
+
 	var result int
 	if op == "+" {
 		result = first + second
@@ -34,7 +34,7 @@ func main() {
 		result = first * second
 	}
 	if op == "/" {
-		if second == 0{
+		if second == 0 {
 			fmt.Println("Division by zero")
 			return
 		}
