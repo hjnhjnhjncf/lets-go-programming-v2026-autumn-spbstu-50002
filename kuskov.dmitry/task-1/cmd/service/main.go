@@ -11,29 +11,27 @@ func main() {
 		return
 	}
 
-	_, err1 := fmt.Scan(&second)
-	if err1 != nil {
+	_, err = fmt.Scan(&second)
+	if err != nil {
 		fmt.Println("Invalid second operand")
 		return
 	}
 
-	_, err2 := fmt.Scan(&op)
-	if (err2 != nil) || (op != "+" && op != "-" && op != "*" && op != "/") {
+	_, err = fmt.Scan(&op)
+	if (err != nil) || (op != "+" && op != "-" && op != "*" && op != "/") {
 		fmt.Println("Invalid operation")
 		return
 	}
 
 	var result int
-	if op == "+" {
+	switch result {
+	case "+":
 		result = first + second
-	}
-	if op == "-" {
+	case "-":
 		result = first - second
-	}
-	if op == "*" {
+	case "*":
 		result = first * second
-	}
-	if op == "/" {
+	case "/":
 		if second == 0 {
 			fmt.Println("Division by zero")
 			return
