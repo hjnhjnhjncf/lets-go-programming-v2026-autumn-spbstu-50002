@@ -24,7 +24,7 @@ func main() {
 	}
 
 	var result int
-	switch result {
+	switch op {
 	case "+":
 		result = first + second
 	case "-":
