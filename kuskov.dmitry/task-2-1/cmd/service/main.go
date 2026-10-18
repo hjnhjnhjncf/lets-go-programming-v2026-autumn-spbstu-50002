@@ -39,7 +39,6 @@ func computeTemperature(measurement string, minimalLocal, maximalLocal *int) int
 func main() {
 	var depNumber int
 	_, err := fmt.Scan(&depNumber)
-
 	if err != nil {
 		fmt.Println("Invalid depNumber")
 
@@ -49,7 +48,6 @@ func main() {
 	for range depNumber {
 		var workerNumber int
 		_, err := fmt.Scan(&workerNumber)
-
 		if err != nil {
 			fmt.Println("Invalid workerNumber")
 
