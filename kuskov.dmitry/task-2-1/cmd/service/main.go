@@ -2,76 +2,75 @@ package main
 
 import "fmt"
 
-// Я так понял по комментариям у одногруппников, что нужен вот такой блок констант, но в моём решении как будто немного излишне.
 const (
-	Tmn int = 15
-	Tmx int = 30
+	minimalTemperature = 15
+	maximalTemperature = 30
 )
 
-func optTemp(s string, mn, mx *int) int {
-	switch s {
-	case "<=" :
-		var T int
-		_, err := fmt.Scan(&T)
+func computeTemperature(measurement string, minimalLocal, maximalLocal *int) int {
+	switch measurement {
+	case "<=":
+		var temperature int
+		_, err := fmt.Scan(&temperature)
+
 		if err != nil {
 			fmt.Println("Invalid temperature")
+		} else if temperature < *maximalLocal {
+			*maximalLocal = temperature
 		}
-		if (T < *mx) {
-			*mx = T
-		}
-	case ">=" :
-		var T int
-		_, err := fmt.Scan(&T)
+	case ">=":
+		var temperature int
+		_, err := fmt.Scan(&temperature)
+
 		if err != nil {
 			fmt.Println("Invalid temperature")
-		}
-		if (T > *mn) {
-			*mn = T
+		} else if temperature > *minimalLocal {
+			*minimalLocal = temperature
 		}
 	}
 
-	if (*mx - *mn >= 0) {
-		return *mn
-	} else {
-		return -1
+	if *maximalLocal-*minimalLocal >= 0 {
+		return *minimalLocal
 	}
+
+	return -1
 }
 
 func main() {
-	var N int
-	_, err := fmt.Scan(&N)
+	var depNumber int
+	_, err := fmt.Scan(&depNumber)
+
 	if err != nil {
-		fmt.Println("Invalid N")
+		fmt.Println("Invalid depNumber")
+
 		return
 	}
 
-	for i := 0; i < N; i++ {
-		var K int
-		_, err := fmt.Scan(&K)
+	for range depNumber {
+		var workerNumber int
+		_, err := fmt.Scan(&workerNumber)
+
 		if err != nil {
-			fmt.Println("Invalid K")
+			fmt.Println("Invalid workerNumber")
+
 			return
 		}
 
-		var mn int = Tmn
-		var mx int = Tmx
+		minimalLocal := minimalTemperature
+		maximalLocal := maximalTemperature
 
-		for j := 0; j < K; j++ {
-			var s string
-			_, err := fmt.Scan(&s)
-			if (err != nil || (s != "<=" && s != ">=")) {
+		for range workerNumber {
+			var measurement string
+			_, err := fmt.Scan(&measurement)
+
+			if err != nil || measurement != "<=" && measurement != ">=" {
 				fmt.Println("Invalid measure")
+
 				return
 			}
 
-			var temp int = optTemp(s, &mn, &mx)
-
-			if (temp == -1) {
-				fmt.Println("An optimal T cannot be reached")
-				break
-			} else {
-				fmt.Println(temp)
-			}
+			temp := computeTemperature(measurement, &minimalLocal, &maximalLocal)
+			fmt.Println(temp)
 		}
 	}
 }
