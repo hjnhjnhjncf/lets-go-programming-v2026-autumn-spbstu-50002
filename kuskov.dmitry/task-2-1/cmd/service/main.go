@@ -11,18 +11,16 @@ func computeTemperature(measurement string, minimalLocal, maximalLocal *int) int
 	switch measurement {
 	case "<=":
 		var temperature int
-		_, err := fmt.Scan(&temperature)
 
-		if err != nil {
+		if _, err := fmt.Scan(&temperature); err != nil {
 			fmt.Println("Invalid temperature")
 		} else if temperature < *maximalLocal {
 			*maximalLocal = temperature
 		}
 	case ">=":
 		var temperature int
-		_, err := fmt.Scan(&temperature)
 
-		if err != nil {
+		if _, err := fmt.Scan(&temperature); err != nil {
 			fmt.Println("Invalid temperature")
 		} else if temperature > *minimalLocal {
 			*minimalLocal = temperature
@@ -38,8 +36,8 @@ func computeTemperature(measurement string, minimalLocal, maximalLocal *int) int
 
 func main() {
 	var depNumber int
-	_, err := fmt.Scan(&depNumber)
-	if err != nil {
+
+	if _, err := fmt.Scan(&depNumber); err != nil {
 		fmt.Println("Invalid depNumber")
 
 		return
@@ -47,8 +45,8 @@ func main() {
 
 	for range depNumber {
 		var workerNumber int
-		_, err := fmt.Scan(&workerNumber)
-		if err != nil {
+
+		if _, err := fmt.Scan(&workerNumber); err != nil {
 			fmt.Println("Invalid workerNumber")
 
 			return
@@ -59,9 +57,8 @@ func main() {
 
 		for range workerNumber {
 			var measurement string
-			_, err := fmt.Scan(&measurement)
 
-			if err != nil || measurement != "<=" && measurement != ">=" {
+			if _, err := fmt.Scan(&measurement); err != nil || measurement != "<=" && measurement != ">=" {
 				fmt.Println("Invalid measure")
 
 				return
